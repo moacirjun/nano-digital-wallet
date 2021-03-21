@@ -1,0 +1,48 @@
+version: '3.5'
+
+services:
+  database:
+    build:
+      context: docker/mariadb
+    container_name: digital_wallet_db
+    environment:
+      - MYSQL_DATABASE=wimo_db
+      - MYSQL_USER=wimo_user
+      - MYSQL_PASSWORD=wimo_pass
+      - MYSQL_ROOT_PASSWORD=wimo_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/data/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./docker/data/mysql:/var/lib/mysql
+
+  php-fpm:
+    build:
+      context: docker/php-fpm
+    container_name: digital_wallet_php
+    depends_on:
+      - database
+    user: php
+    environment:
+      APP_ENV: ${APP_ENV}
+      APP_SECRET: ${APP_SECRET}
+      PHP_IDE_CONFIG: "serverName=wimo.local" # you must have a server configured with this exactly name in PhpStorm
+      XDEBUG_CONFIG: "idekey=PHPSTORM"
+      APPLICATION_ENV: dev
+    volumes:
+      - .:/var/www/html/app
+      - ./docker/php-fpm/conf/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/php-fpm/conf/php-cli.ini:/usr/local/etc/php/php-cli.ini
+
+  nginx:
+    build:
+      context: docker/nginx
+    container_name: digital_wallet_nginx
+    volumes:
+      - .:/var/www/html/app
+      - ./docker/config/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/config/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - php-fpm
+    ports:
+      - "80:80"

@@ -1,0 +1,10 @@
+fos_rest:
+  view:
+    view_response_listener:  true
+  format_listener:
+    rules:
+      - { path: ^/api, prefer_extension: true, fallback_format: json, priorities: [ json ] }
+      - { path: ^/, prefer_extension: true, fallback_format: html, priorities: [ html, '*/*' ] }
+  exception:
+    codes:
+      Doctrine\ORM\EntityNotFoundException: 404

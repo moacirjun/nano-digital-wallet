@@ -21,7 +21,7 @@ class Transference
 
     /**
      * @var string|null
-     * @ORM\Column(type="guid")
+     * @ORM\Column(type="guid", unique=true)
      */
     private $number;
 

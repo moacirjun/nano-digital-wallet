@@ -26,7 +26,7 @@ services:
     environment:
       APP_ENV: ${APP_ENV}
       APP_SECRET: ${APP_SECRET}
-      PHP_IDE_CONFIG: "serverName=wimo.local" # you must have a server configured with this exactly name in PhpStorm
+      PHP_IDE_CONFIG: "serverName=docker" # you must have a server configured with this exactly name in PhpStorm
       XDEBUG_CONFIG: "idekey=PHPSTORM"
       APPLICATION_ENV: dev
     volumes:

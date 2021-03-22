@@ -4,6 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    app.transference.external_authorizer_uri: '%env(EXTERNAL_AUTHORIZER_URI)%'
 
 services:
     # default configuration for services in *this* file
@@ -18,14 +19,25 @@ services:
         exclude:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
+            - '../src/Domain/Message'
+            - '../src/Domain/Model'
+            - '../src/Infra/Http/Controller/'
+            - '../src/Infra/Domain/Service/Transference/'
             - '../src/Kernel.php'
             - '../src/Tests/'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    App\Controller\:
-        resource: '../src/Controller/'
+    App\Infra\Http\Controller\:
+        resource: '../src/Infra/Http/Controller/'
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Infra\Domain\Service\Transference\HttpExternalAuthorizerRpc:
+        class: App\Infra\Domain\Service\Transference\HttpExternalAuthorizerRpc
+        arguments: [ '%app.transference.external_authorizer_uri%' ]
+
+    App\Domain\Model\Transference\ExternalAuthorizerRpc:
+        alias: App\Infra\Domain\Service\Transference\HttpExternalAuthorizerRpc

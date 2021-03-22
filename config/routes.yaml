@@ -1,3 +1,12 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /test
+    controller: App\Infra\Http\Controller\TestController::test
+
+new_transference:
+    path: /api/transferences
+    methods:
+        - POST
+    controller: App\Infra\Http\Controller\TransferenceController
+
+api_login_check:
+    path: /api/login_check

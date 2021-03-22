@@ -21,7 +21,7 @@ class Wallet
     /**
      * @var User|null
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\OneToOne(targetEntity="User")
      */
     private $user;
 

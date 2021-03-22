@@ -8,3 +8,4 @@ fos_rest:
   exception:
     codes:
       Doctrine\ORM\EntityNotFoundException: 404
+      InvalidArgumentException: 400

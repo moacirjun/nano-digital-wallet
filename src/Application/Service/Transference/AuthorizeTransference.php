@@ -14,7 +14,7 @@ use Doctrine\ORM\EntityNotFoundException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class MakeNewTransference
+class AuthorizeTransference
 {
     /** @var FindUserById */
     private $findUserService;

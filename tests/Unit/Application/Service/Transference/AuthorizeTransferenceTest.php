@@ -3,17 +3,17 @@
 namespace App\Tests\Application\Service\Transference;
 
 use App\Application\DataTransformer\Transference\NewTransferenceRequestInput;
-use App\Application\Service\Transference\MakeNewTransference;
+use App\Application\Service\Transference\AuthorizeTransference;
 use App\Entity\User;
 use App\Tests\Unit\BaseCodeceptionTestCase;
 use Doctrine\ORM\EntityNotFoundException;
 
-class MakeNewTransferenceTest extends BaseCodeceptionTestCase
+class AuthorizeTransferenceTest extends BaseCodeceptionTestCase
 {
     /** @var User */
     private $user;
 
-    /** @var MakeNewTransference */
+    /** @var AuthorizeTransference */
     private $service;
 
     protected function _before()
@@ -21,7 +21,7 @@ class MakeNewTransferenceTest extends BaseCodeceptionTestCase
         parent::_before();
 
         $this->user = $this->getEntityManager()->getRepository(User::class)->find(1);
-        $this->service = $this->getContainer()->get(MakeNewTransference::class);
+        $this->service = $this->getContainer()->get(AuthorizeTransference::class);
     }
 
     public function testShouldThrowsErrorWhenPayeeIsNotFound()

@@ -29,9 +29,9 @@ services:
         class: App\Domain\Service\Transference\TransferenceCanBePerformedChecker
         arguments: ['@test.transference.fake-authorizer.unauthorized']
 
-    # MakeNewTransference with successfully response
-    test.transference.make-new-transference.success:
-        class: App\Application\Service\Transference\MakeNewTransference
+    # AuthorizeTransference with successfully response
+    test.transference.authorize-transference.success:
+        class: App\Application\Service\Transference\AuthorizeTransference
         arguments:
             - '@App\Domain\Service\User\FindUserById'
             - '@test.transference.transference-can-be-performed.success'
@@ -39,7 +39,7 @@ services:
             - '@App\Domain\Service\Transference\TransferenceFactory'
             - '@Symfony\Component\Messenger\MessageBusInterface'
 
-    App\Application\Service\Transference\MakeNewTransference: '@test.transference.make-new-transference.success'
+    App\Application\Service\Transference\AuthorizeTransference: '@test.transference.authorize-transference.success'
 
     test.notifier.guzzle-client.success:
         class: GuzzleHttp\Client

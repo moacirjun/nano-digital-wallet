@@ -3,7 +3,7 @@
 namespace App\Infra\Http\Controller;
 
 use App\Application\DataTransformer\Transference\NewTransferenceRequestDataTransformer;
-use App\Application\Service\Transference\MakeNewTransference;
+use App\Application\Service\Transference\AuthorizeTransference;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,12 +13,12 @@ class TransferenceController extends AbstractFOSRestController
     /** @var NewTransferenceRequestDataTransformer */
     private $dataTransformer;
 
-    /** @var MakeNewTransference */
+    /** @var AuthorizeTransference */
     private $makeNewTransference;
 
     public function __construct(
         NewTransferenceRequestDataTransformer $dataTransformer,
-        MakeNewTransference $makeNewTransference
+        AuthorizeTransference $makeNewTransference
     ) {
         $this->dataTransformer = $dataTransformer;
         $this->makeNewTransference = $makeNewTransference;

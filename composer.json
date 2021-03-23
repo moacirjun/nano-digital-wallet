@@ -66,6 +66,13 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "sync": [
+            "@composer install",
+            "@php bin/console doctrine:migrations:migrate -n -e dev",
+            "@php bin/console  doctrine:fixtures:load -n -e dev",
+            "@php bin/console  doctrine:database:drop -n -e test --force",
+            "@php bin/console  doctrine:database:create -n -e test"
         ]
     },
     "conflict": {

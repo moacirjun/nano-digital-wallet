@@ -4,8 +4,8 @@ namespace App\Tests\Unit\Domain\Service\Transference;
 
 use App\Domain\Model\Transference\PayerHasNoEnoughMoney;
 use App\Domain\Service\Transference\newTransferenceDatabaseManager;
-use App\Entity\Transference;
-use App\Entity\Wallet;
+use App\Domain\Model\Transference;
+use App\Domain\Model\Wallet;
 use App\Tests\Unit\BaseCodeceptionTestCase;
 use DateTimeImmutable;
 use Symfony\Component\Uid\Uuid;

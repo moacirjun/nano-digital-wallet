@@ -1,12 +1,12 @@
 security:
     encoders:
-        App\Entity\User:
+        App\Domain\Model\User:
             algorithm: auto
 
     providers:
         users:
             entity:
-                class: App\Entity\User
+                class: App\Domain\Model\User
                 property: email
     firewalls:
         dev:

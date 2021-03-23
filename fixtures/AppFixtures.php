@@ -2,9 +2,9 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Transference;
-use App\Entity\User;
-use App\Entity\Wallet;
+use App\Domain\Model\Transference;
+use App\Domain\Model\User;
+use App\Domain\Model\Wallet;
 use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;

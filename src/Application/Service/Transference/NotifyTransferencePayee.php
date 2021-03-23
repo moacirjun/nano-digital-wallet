@@ -4,7 +4,7 @@ namespace App\Application\Service\Transference;
 
 use App\Domain\Model\Notification\ErrorSendingTransferencePayeeNotification;
 use App\Domain\Model\Notification\NotificationClient;
-use App\Entity\Transference;
+use App\Domain\Model\Transference;
 use Psr\Log\LoggerInterface;
 
 class NotifyTransferencePayee

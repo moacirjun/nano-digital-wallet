@@ -2,7 +2,7 @@
 
 namespace App\Domain\Model\Notification;
 
-use App\Entity\Transference;
+use App\Domain\Model\Transference;
 
 interface NotificationClient
 {

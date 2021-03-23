@@ -4,8 +4,8 @@
 namespace App\Domain\Service\User;
 
 
-use App\Entity\User;
-use App\Repository\UserRepository;
+use App\Domain\Model\User;
+use App\Domain\Model\UserRepository;
 use Doctrine\ORM\EntityNotFoundException;
 
 class FindUserById

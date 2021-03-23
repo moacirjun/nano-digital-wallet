@@ -2,7 +2,7 @@
 
 namespace App\Application\DataTransformer\Transference;
 
-use App\Entity\User;
+use App\Domain\Model\User;
 use InvalidArgumentException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\Validator\Validation;

@@ -2,7 +2,7 @@
 
 namespace App\Domain\Message;
 
-use App\Entity\Transference;
+use App\Domain\Model\Transference;
 
 class NewTransferenceAuthorized
 {

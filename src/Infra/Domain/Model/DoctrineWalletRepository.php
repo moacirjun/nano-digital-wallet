@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repository;
+namespace App\Infra\Domain\Model;
 
-use App\Entity\Wallet;
+use App\Domain\Model\Wallet;
+use App\Domain\Model\WalletRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -13,33 +13,15 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Wallet[]    findAll()
  * @method Wallet[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class WalletRepository extends ServiceEntityRepository
+class DoctrineWalletRepository extends ServiceEntityRepository implements WalletRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Wallet::class);
     }
 
-    // /**
-    //  * @return Wallet[] Returns an array of Wallet objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
     /**
-     * @param $UserId
-     * @return Wallet|null
-     * @throws NonUniqueResultException
+     * @inheritDoc
      */
     public function findOneByUserId(int $UserId): ?Wallet
     {

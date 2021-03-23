@@ -5,7 +5,7 @@ namespace App\Application\Service\Transference;
 use App\Domain\Message\TransferenceProcessDone;
 use App\Domain\Model\Transference\ErrorProcessingNewTransference;
 use App\Domain\Service\Transference\newTransferenceDatabaseManager;
-use App\Entity\Transference;
+use App\Domain\Model\Transference;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 

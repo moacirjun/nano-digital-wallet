@@ -14,11 +14,11 @@ services:
         factory: ['App\Tests\Unit\Application\Service\Transference\AuthorizerClientFactory', 'makeError']
 
     test.transference.fake-authorizer.success:
-        class: App\Infra\Domain\Service\Transference\HttpExternalAuthorizerRpc
+        class: App\Infra\Domain\Model\Transference\HttpExternalAuthorizerRpc
         arguments: [ '%app.transference.external_authorizer_uri%', '@test.transference.authorizer.success-client' ]
 
     test.transference.fake-authorizer.unauthorized:
-        class: App\Infra\Domain\Service\Transference\HttpExternalAuthorizerRpc
+        class: App\Infra\Domain\Model\Transference\HttpExternalAuthorizerRpc
         arguments: [ '%app.transference.external_authorizer_uri%', '@test.transference.authorizer.error-client' ]
 
     test.transference.transference-can-be-performed.success:

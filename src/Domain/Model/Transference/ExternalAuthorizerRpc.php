@@ -2,7 +2,7 @@
 
 namespace App\Domain\Model\Transference;
 
-use App\Entity\Transference;
+use App\Domain\Model\Transference;
 
 interface ExternalAuthorizerRpc
 {

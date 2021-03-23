@@ -4,7 +4,7 @@ namespace App\Domain\Service\Transference;
 
 use App\Domain\Model\Transference\ErrorProcessingNewTransference;
 use App\Domain\Model\Transference\PayerHasNoEnoughMoney;
-use App\Entity\Transference;
+use App\Domain\Model\Transference;
 use Doctrine\ORM\EntityManagerInterface;
 use Throwable;
 

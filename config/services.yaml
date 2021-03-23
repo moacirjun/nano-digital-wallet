@@ -39,14 +39,17 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\Infra\Domain\Service\Transference\HttpExternalAuthorizerRpc:
-        class: App\Infra\Domain\Service\Transference\HttpExternalAuthorizerRpc
+    App\Infra\Domain\Model\Transference\HttpExternalAuthorizerRpc:
+        class: App\Infra\Domain\Model\Transference\HttpExternalAuthorizerRpc
         arguments: [ '%app.transference.external_authorizer_uri%' ]
 
-    App\Domain\Model\Transference\ExternalAuthorizerRpc: '@App\Infra\Domain\Service\Transference\HttpExternalAuthorizerRpc'
+    App\Domain\Model\Transference\ExternalAuthorizerRpc: '@App\Infra\Domain\Model\Transference\HttpExternalAuthorizerRpc'
 
     App\Infra\Libs\Notifier\HttpNotificationClient:
         class: App\Infra\Libs\Notifier\HttpNotificationClient
         arguments: ['%app.notifier.uri%']
 
     App\Domain\Model\Notification\NotificationClient: '@App\Infra\Libs\Notifier\HttpNotificationClient'
+
+    App\Domain\Model\UserRepository: '@App\Infra\Domain\Model\DoctrineUserRepository'
+    App\Domain\Model\WalletRepository: '@App\Infra\Domain\Model\DoctrineWalletRepository'

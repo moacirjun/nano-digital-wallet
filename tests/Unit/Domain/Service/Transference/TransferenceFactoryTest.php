@@ -3,8 +3,8 @@
 namespace App\Tests\Unit\Domain\Service\Transference;
 
 use App\Domain\Service\Transference\TransferenceFactory;
-use App\Entity\User;
-use App\Entity\Wallet;
+use App\Domain\Model\User;
+use App\Domain\Model\Wallet;
 use App\Tests\Unit\BaseCodeceptionTestCase;
 
 class TransferenceFactoryTest extends BaseCodeceptionTestCase

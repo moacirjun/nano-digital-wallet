@@ -8,7 +8,7 @@ use App\Domain\Model\Transference\ExternalAuthorizerRpc;
 use App\Domain\Model\Transference\PayerHasNoEnoughMoney;
 use App\Domain\Model\Transference\ShopperCannotDoTransferences;
 use App\Domain\Model\Transference\TransferenceUnauthorized;
-use App\Entity\Transference;
+use App\Domain\Model\Transference;
 
 class TransferenceCanBePerformedChecker
 {

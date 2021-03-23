@@ -4,7 +4,7 @@ namespace App\Tests\Application\Service\Transference;
 
 use App\Application\DataTransformer\Transference\NewTransferenceRequestInput;
 use App\Application\Service\Transference\AuthorizeTransference;
-use App\Entity\User;
+use App\Domain\Model\User;
 use App\Tests\Unit\BaseCodeceptionTestCase;
 use Doctrine\ORM\EntityNotFoundException;
 

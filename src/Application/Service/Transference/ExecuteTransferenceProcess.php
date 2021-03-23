@@ -2,15 +2,14 @@
 
 namespace App\Application\Service\Transference;
 
-use App\Domain\Message\NewTransferenceAuthorized;
 use App\Domain\Message\TransferenceProcessDone;
 use App\Domain\Model\Transference\ErrorProcessingNewTransference;
 use App\Domain\Service\Transference\newTransferenceDatabaseManager;
+use App\Entity\Transference;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class NewTransferenceAuthorizedHandler implements MessageHandlerInterface
+class ExecuteTransferenceProcess
 {
     /** @var newTransferenceDatabaseManager */
     private $transferenceDatabaseManager;
@@ -31,10 +30,8 @@ class NewTransferenceAuthorizedHandler implements MessageHandlerInterface
         $this->bus = $bus;
     }
 
-    public function __invoke(NewTransferenceAuthorized $message)
+    public function execute(Transference $transference)
     {
-        $transference = $message->getTransference();
-
         try {
             $this->transferenceDatabaseManager->process($transference);
         } catch (ErrorProcessingNewTransference $exception) {

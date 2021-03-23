@@ -40,3 +40,16 @@ services:
             - '@Symfony\Component\Messenger\MessageBusInterface'
 
     App\Application\Service\Transference\MakeNewTransference: '@test.transference.make-new-transference.success'
+
+    test.notifier.guzzle-client.success:
+        class: GuzzleHttp\Client
+        factory: ['App\Infra\Libs\BasicHttpClient\GuzzleMockedClientFactory', 'makeSuccess']
+        arguments: ['{"message": "Enviado"}']
+
+    test.notifier.success:
+        class: App\Infra\Libs\Notifier\HttpNotificationClient
+        arguments:
+            - '%app.notifier.uri%'
+            - '@test.notifier.guzzle-client.success'
+
+    App\Domain\Model\Notification\NotificationClient: '@test.notifier.success'

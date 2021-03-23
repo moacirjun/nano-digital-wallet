@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Unit\Application\Service\Transference;
+namespace App\Infra\Libs\BasicHttpClient;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
@@ -9,15 +9,12 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 
-/**
- * A Mocked Client factory to external authorizer service
- */
-class AuthorizerClientFactory
+class GuzzleMockedClientFactory
 {
-    public static function makeSuccess() : Client
+    public static function makeSuccess(string $responseBody) : Client
     {
         $mock = new MockHandler([
-            new Response(200, ['Content-Type' => 'application/json'], '{"message": "Autorizado"}'),
+            new Response(200, ['Content-Type' => 'application/json'], $responseBody),
         ]);
 
         $handler = HandlerStack::create($mock);

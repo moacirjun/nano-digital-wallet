@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     app.transference.external_authorizer_uri: '%env(EXTERNAL_AUTHORIZER_URI)%'
+    app.notifier.uri: '%env(NOTIFIER_URI)%'
 
 services:
     # default configuration for services in *this* file
@@ -43,3 +44,9 @@ services:
         arguments: [ '%app.transference.external_authorizer_uri%' ]
 
     App\Domain\Model\Transference\ExternalAuthorizerRpc: '@App\Infra\Domain\Service\Transference\HttpExternalAuthorizerRpc'
+
+    App\Infra\Libs\Notifier\HttpNotificationClient:
+        class: App\Infra\Libs\Notifier\HttpNotificationClient
+        arguments: ['%app.notifier.uri%']
+
+    App\Domain\Model\Notification\NotificationClient: '@App\Infra\Libs\Notifier\HttpNotificationClient'

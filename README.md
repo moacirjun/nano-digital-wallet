@@ -76,3 +76,7 @@ $ curl --location --request POST 'localhost/api/transferences' \
 {"transference":"3908ef07-fe21-4fed-a016-091b72de275a"}
 ```
 
+## Proposta de melhoria
+Configurar o `Symfony/Messenger` para manipular as mensagens de forma assíncrona utilizando o RabbitMQ como driver. 
+Dessa forma, seria possível gerenciar tópicos e filas a nível de configuração, e sem falar na possibilidade de 
+definir filas específicas para reprocessamento de falhas. 

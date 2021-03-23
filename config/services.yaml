@@ -12,6 +12,9 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+    App\DataFixtures\:
+        resource: '../fixtures/'
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
@@ -39,5 +42,4 @@ services:
         class: App\Infra\Domain\Service\Transference\HttpExternalAuthorizerRpc
         arguments: [ '%app.transference.external_authorizer_uri%' ]
 
-    App\Domain\Model\Transference\ExternalAuthorizerRpc:
-        alias: App\Infra\Domain\Service\Transference\HttpExternalAuthorizerRpc
+    App\Domain\Model\Transference\ExternalAuthorizerRpc: '@App\Infra\Domain\Service\Transference\HttpExternalAuthorizerRpc'

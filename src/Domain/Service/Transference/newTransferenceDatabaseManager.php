@@ -30,6 +30,9 @@ class newTransferenceDatabaseManager
         $payerWallet = $transference->getPayerWallet();
         $payeeWallet = $transference->getPayeeWallet();
 
+        $this->manager->refresh($payerWallet);
+        $this->manager->refresh($payeeWallet);
+
         if ($payerWallet->getOnHand() < $transference->getAmount()) {
             throw new PayerHasNoEnoughMoney();
         }

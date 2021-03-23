@@ -1,0 +1,50 @@
+imports:
+    - { resource: services.yaml }
+
+services:
+    _defaults:
+        public: true
+
+    test.transference.authorizer.success-client:
+        class: GuzzleHttp\Client
+        factory: ['App\Tests\Unit\Application\Service\Transference\AuthorizerClientFactory', 'makeSuccess']
+
+    test.transference.authorizer.error-client:
+        class: GuzzleHttp\Client
+        factory: ['App\Tests\Unit\Application\Service\Transference\AuthorizerClientFactory', 'makeError']
+
+    test.transference.fake-authorizer.success:
+        class: App\Infra\Domain\Service\Transference\HttpExternalAuthorizerRpc
+        arguments: [ '%app.transference.external_authorizer_uri%', '@test.transference.authorizer.success-client' ]
+
+    test.transference.fake-authorizer.unauthorized:
+        class: App\Infra\Domain\Service\Transference\HttpExternalAuthorizerRpc
+        arguments: [ '%app.transference.external_authorizer_uri%', '@test.transference.authorizer.error-client' ]
+
+    test.transference.transference-can-be-performed.success:
+        class: App\Domain\Service\Transference\TransferenceCanBePerformedChecker
+        arguments: ['@test.transference.fake-authorizer.success']
+
+    test.transference.transference-can-be-performed.unauthorized:
+        class: App\Domain\Service\Transference\TransferenceCanBePerformedChecker
+        arguments: ['@test.transference.fake-authorizer.unauthorized']
+
+    # MakeNewTransference with successfully response
+    test.transference.make-new-transference.success:
+        class: App\Application\Service\Transference\MakeNewTransference
+        arguments:
+            - '@App\Domain\Service\User\FindUserById'
+            - '@test.transference.transference-can-be-performed.success'
+            - '@logger'
+            - '@App\Domain\Service\Transference\TransferenceFactory'
+            - '@Symfony\Component\Messenger\MessageBusInterface'
+
+    # MakeNewTransference with failure response
+    test.transference.make-new-transference.unauthorized:
+        class: App\Application\Service\Transference\MakeNewTransference
+        arguments:
+            - '@App\Domain\Service\User\FindUserById'
+            - '@test.transference.transference-can-be-performed.unauthorized'
+            - '@logger'
+            - '@App\Domain\Service\Transference\TransferenceFactory'
+            - '@Symfony\Component\Messenger\MessageBusInterface'

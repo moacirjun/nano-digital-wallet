@@ -1,0 +1,28 @@
+paths:
+    tests: tests
+    output: tests/storage/output
+    data: tests/storage/data
+    support: tests/storage/support
+    envs: tests/storage/envs
+actor_suffix: Tester
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed
+modules:
+    enabled:
+        - Db:
+            dsn: 'mysql:host=digital_wallet_db;dbname=db_test'
+            user: 'root'
+            password: 'wimo_pass'
+            populate: true
+            populator: >
+                mysql -u$user -p$password -h$host -e "DROP DATABASE IF EXISTS $dbname; CREATE DATABASE $dbname; GRANT ALL PRIVILEGES ON *.* TO '$user'@'$host' IDENTIFIED BY '$password';" &&
+                php ./bin/console doctrine:migrations:migrate -n -e test
+params:
+    - .env
+    - .env.local
+    - .env.test
+settings:
+    shuffle: true
+    color: true
+    report_useless_test: tue

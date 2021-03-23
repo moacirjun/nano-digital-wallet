@@ -29,7 +29,9 @@
         "symfony/serializer": "5.2.*",
         "symfony/uid": "5.2.*",
         "symfony/validator": "5.2.*",
-        "symfony/yaml": "5.2.*"
+        "symfony/yaml": "5.2.*",
+        "codeception/module-phpbrowser": "^1.0.0",
+        "codeception/module-asserts": "^1.0.0"
     },
     "config": {
         "optimize-autoloader": true,
@@ -75,9 +77,12 @@
         }
     },
     "require-dev": {
+        "codeception/module-db": "^1.1",
+        "codeception/module-doctrine2": "^1.1",
+        "codeception/module-symfony": "^2.0",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "symfony/maker-bundle": "^1.30"
     },
-    "name": "nano-digital-wallet",
+    "name": "moacirjun/nano-digital-wallet",
     "description": ""
 }

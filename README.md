@@ -24,9 +24,15 @@ $ git clone git@github.com:moacirjun/nano-digital-wallet.git
 ```
 Monte a imagem do `php-fpm` com o seu userId:
 ```bash
-$ cd ano-digital-wallet && docker-compose build --build-arg USER_ID=${UID} --build-arg GROUP_ID=${GID} php-fpm
+$ cd nano-digital-wallet && docker-compose build --build-arg USER_ID=${UID} --build-arg GROUP_ID=${GID} php-fpm
 $ docker-compose up -d
 ```
+
+Crie seu `.env.local`:
+```bash
+$ cp .env .env.local
+```
+
 Instalar as dependências, carregar banco de dados e Fixtures.
 ```bash
 $ docker exec -it digital_wallet_php composer sync
@@ -62,7 +68,7 @@ $ curl --location --request POST 'localhost/api/transferences' \
   --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MTY0OTE...' \
   --header 'Content-Type: application/json' \
   --data-raw '{
-      "payee": 17,
+      "payee": 2,
       "amount": 5
   }'
 ```

@@ -24,7 +24,7 @@ class TransferenceCanBePerformedChecker
      * @param Transference $transference
      * @throws ShopperCannotDoTransferences|PayerHasNoEnoughMoney|TransferenceUnauthorized
      */
-    public function check(Transference $transference)
+    public function check(Transference $transference) : void
     {
         $payerWallet = $transference->getPayerWallet();
         $payer = $payerWallet->getUser();

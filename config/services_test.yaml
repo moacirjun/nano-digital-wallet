@@ -39,12 +39,4 @@ services:
             - '@App\Domain\Service\Transference\TransferenceFactory'
             - '@Symfony\Component\Messenger\MessageBusInterface'
 
-    # MakeNewTransference with failure response
-    test.transference.make-new-transference.unauthorized:
-        class: App\Application\Service\Transference\MakeNewTransference
-        arguments:
-            - '@App\Domain\Service\User\FindUserById'
-            - '@test.transference.transference-can-be-performed.unauthorized'
-            - '@logger'
-            - '@App\Domain\Service\Transference\TransferenceFactory'
-            - '@Symfony\Component\Messenger\MessageBusInterface'
+    App\Application\Service\Transference\MakeNewTransference: '@test.transference.make-new-transference.success'
